@@ -1,0 +1,106 @@
+/* Whole set */
+body {
+    /* Default Font Size: 11pt
+       Default Font:      New York,
+                          Times New Roman,
+                          Roman,
+                          serif*/
+    font: 11pt/1.25 -apple-system-ui-serif, 'Times New Roman', Roman, serif;
+    /* Background */
+    background-color: #fff;
+    /* font color */
+    color: #000;
+}
+
+/* Hyperlinks */
+/* Default */
+a:link {
+    /* Remove Underline */
+    text-decoration: none;
+    /* Change to New Colour */
+    color: aqua;
+}
+
+/* Visited links */
+a:visited {
+    /* Change Colour */
+    color: orange;
+}
+
+/* Hover */
+a:hover {
+    /* Underline */
+    text-decoration: underline solid;
+}
+
+/* Active Links */
+a:active {
+    /* Remove Underline */
+    text-decoration: none;
+}
+/* /Hyperlinks */
+
+/* Bolder Fonts */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+strong,
+b {
+    font-weight: bold;
+    font-family: -apple-system, 'BlinkMacSystem', 'arial', sans-serif;
+}
+
+/* Inline Frame for PDF */
+
+/* index */
+details {
+    border: 1px solid;
+    padding: 0.25em;
+    background-color: lime;
+}
+
+/* Index content */
+details > ol {
+    /* i ii iii iv v vi ... */
+    list-style-type: lower-roman;
+}
+
+/* Heading of article */
+hgroup {
+    /* larger letters */
+    font-size: +0.5ex;
+}
+
+/* Extra Heading */
+hgroup > h1:first-child {
+    /* change background and font */
+    background-color: #000;
+    color: #fff;
+}
+
+/* paragraphs */
+p {
+    /* indent the first letter */
+    text-indent: 1em;
+}
+
+/* Address */
+address {
+    /* Text to end */
+    text-align: right;
+}
+
+/* date */
+div:has(> date) {
+    /* Text Right */
+    text-align: right;
+}
+
+/* blockquote */
+:is(blockquote) {
+    /* indent */
+    margin-left: 2em;
+}
