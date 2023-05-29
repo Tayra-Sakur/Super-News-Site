@@ -12,6 +12,20 @@ body {
     color: #000;
 }
 
+/* footer */
+footer {
+    /* background gray */
+    background-color: #eee;
+}
+
+/* abbr */
+abbr {
+    /* change colour */
+    color: #dd3;
+    /* italic */
+    font-style: italic;
+}
+
 /* Hyperlinks */
 /* Default */
 a:link {
@@ -59,7 +73,7 @@ b {
 details {
     border: 1px solid;
     padding: 0.25em;
-    background-color: lime;
+    background-color: #dfd;
 }
 
 /* Index content */
@@ -70,8 +84,6 @@ details > ol {
 
 /* Heading of article */
 hgroup {
-    /* larger letters */
-    font-size: +0.5ex;
 }
 
 /* Extra Heading */
@@ -79,6 +91,12 @@ hgroup > h1:first-child {
     /* change background and font */
     background-color: #000;
     color: #fff;
+}
+
+/* abstract */
+hgroup > p {
+    /* right */
+    text-align: right;
 }
 
 /* paragraphs */
@@ -94,7 +112,7 @@ address {
 }
 
 /* date */
-div:has(> date) {
+div:has(> time) {
     /* Text Right */
     text-align: right;
 }
@@ -103,4 +121,11 @@ div:has(> date) {
 :is(blockquote) {
     /* indent */
     margin-left: 2em;
+}
+
+/* figcaption */
+blockquote + figcaption,
+figcaption:has(+ blockquote) {
+    /* righter text */
+    text-align: right;
 }

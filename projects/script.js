@@ -28,6 +28,13 @@
 var jQueryStatic;
 
 /**
+ * remove Event handler
+ * @type {void}
+ * @nosideeffect
+ */
+onerror = void(false);
+
+/**
  * Bug trackker
  * @type {function(string,string,number,number,Object)}
  * @nosideeffect
@@ -64,6 +71,7 @@ onerror =
         /**
          * @type {function(?): void}
          */
+        alert(errMsg);
         console.error(errMsg);
     }
 ;
@@ -98,7 +106,7 @@ const articles =
         {
             supertitle: 'Mickey Momma Got ARRESTED',
             heading2: 'Nobody Didn’t Smile!',
-            summary: 'On 12 May, Mickey Momma get arrested.',
+            summary: 'On 12 May, Mickey Momma got arrested.',
             content:
                 [
                     'Mickey Momma has disturbed Tigger for many years.'
@@ -108,7 +116,7 @@ const articles =
                 new URL(
                     'mailto:tayra_sakurai@icloud.com'
                 ),
-            date: new Date(2023,4,11)
+            date: new Date(1987,2,31)
         }
     ];
 
@@ -120,6 +128,7 @@ const articles =
  * @return {void}
  */
 function articleWrite(index, element){
+    console.log(element);
     /**
      * @type {jQueryStatic}
      */
@@ -172,7 +181,7 @@ function articleWrite(index, element){
         /**
          * @return {void}
          */
-        supertitle
+        supertitleh
             .append(
                 `<h${headLevel}>${commonH}</h${headLevel}>`
             );
@@ -181,7 +190,7 @@ function articleWrite(index, element){
      * add Summary
      * @type {function(string): void}
      */
-    supertitle
+    supertitleh
         .append(
             '<p>'
                 +
@@ -193,7 +202,7 @@ function articleWrite(index, element){
      * Set heading
      * @type {function}
      */
-    SuperJq.prepend(supertitle);
+    SuperJq.prepend(supertitleh);
     /**
      * Article
      * @type {jQueryStatic}
@@ -204,7 +213,7 @@ function articleWrite(index, element){
      * @type {?string}
      */
     let ctr;
-    for ( ctr of element.articles ){
+    for ( ctr of element.content ){
         ctr =
             '<p>'
                 +
@@ -334,6 +343,24 @@ function articleWrite(index, element){
      */
     jQuery('div#content')
         .append(SuperJq);
+    /**
+     * give id
+     * @type {string}
+     */
+    var automaticId = `jQueryId-${index}`;
+    /**
+     * @return {jQueryStatic}
+     */
+    SuperJq.attr('id', automaticId);
+    /**
+     * add index
+     * @return {void}
+     */
+    $('ol#index1')
+        .append(
+            `<li><a href="#${automaticId}" title="${element.summary}">${element.supertitle}</a></li>`
+        )
+    ;
 }
 
 /**
@@ -341,3 +368,88 @@ function articleWrite(index, element){
  * make a function that start the action
  * make a function which makes footer data
  */
+/**
+ * start function
+ * making articles
+ * @param {Event} event
+ * @return {jQueryStatic}
+ */
+function startSetup ( event ) {
+    /**
+     * @return {Array<Object>}
+     */
+    $.each(articles, articleWrite);
+    /**
+     * Footer
+     * @const {jQueryStatic}
+     */
+    const footerJQ =
+        jQuery('<footer></footer>');
+    /**
+     * adding license notice
+     * @const {jQueryStatic}
+     */
+    const licenseDiv =
+        jQuery('<div></div>');
+    /**
+     * adding the content of div
+     * @return {void}
+     */
+    licenseDiv
+        .prpend(
+            '<h2>License Notice</h2><p>This project is released under the GNU General Public License(<abbr>GPL</abbr>).</p>'
+        )
+    ;
+    /**
+     * figure for license
+     * @const {jQueryStatic}
+     */
+    const licenseFigure =
+        jQuery('<figure></figure>');
+    /**
+     * blockquote for license
+     * @const {jQueryStatic}
+     */
+    const licenseBlockquote =
+        jQuery('<blockquote cite="https://www.gnu.org/licenses/gpl.html"></blockquote>');
+    /**
+     * License Notice
+     * @const {string}
+     */
+    const licenseNotice =
+`<p>This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.</p>
+<p>This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.</p>
+<p>You should have received a copy of the GNU General Public License along with this program. If not, see <https://www.gnu.org/licenses/>.</p>`;
+    /**
+     * text in blockquote
+     * @return {void}
+     */
+    licenseBlockquote
+        .prepend(licenseNotice);
+    /**
+     * same as above
+     * @return {void}
+     */
+    licenseFigure
+        .prepend(licenseBlockquote);
+    /**
+     * add License Notice
+     * @return {void}
+     */
+    licenseDiv
+        .append(licenseFigure);
+    /**
+     * add these to footer
+     * @return {void}
+     */
+    footerJQ
+        .prepend(licenseDiv);
+    /**
+     * put footer
+     * @return {void}
+     */
+    $('main').after(footerJQ);
+    return jQuery;
+}
+
+$(startSetup);
